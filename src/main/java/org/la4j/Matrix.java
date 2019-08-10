@@ -616,6 +616,24 @@ public abstract class Matrix implements Iterable<Double> {
     }
 
     /**
+     * Uses the Hadmard product in order to produce Matrices with powers of n for each element.
+     * This function does not modify the origin matrix.
+     * 
+     * @param n as the exponent
+     * @return Matrix with element to the power of n
+     */
+    public Matrix hadamardPower(int n) {
+    	if (n > 1) {
+    		Matrix result = this.hadamardProduct(this);
+    		if (n > 2) {
+    			result = result.hadamardProduct(this);
+    		}
+    		return result;
+    	}
+    	return this.copy();
+    }
+    
+    /**
      * Multiplies this matrix (A) by given {@code that} matrix (B).
      * 
      * @param that the right hand matrix for multiplication
